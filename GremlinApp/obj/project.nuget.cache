@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RCq0qOPoDR+XsurV4XdW5KXS0hQZY4NrU3LZccbmU0+W+L2/rIQnjnRq70rVblf1mpK1iiv32AtqDvDM/OecCQ==",
+  "dgSpecHash": "kUJOFIsvXde9vqF5G6vIhfAez5yaYJaoHxtgy5W5O/8zkI+t0chqWmOILSjZjluXoGV8QT4pMZUuQpput1uvUg==",
   "success": true,
   "projectFilePath": "D:\\source\\microsoft\\GremlinApp\\GremlinApp.csproj",
   "expectedPackageFiles": [
@@ -16,7 +16,7 @@
     "C:\\Users\\SeanP\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\SeanP\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\SeanP\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Microsoft\\Xamarin\\NuGet\\newtonsoft.json\\11.0.2\\newtonsoft.json.11.0.2.nupkg.sha512",
+    "C:\\Users\\SeanP\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\SeanP\\.nuget\\packages\\polly\\7.2.0\\polly.7.2.0.nupkg.sha512",
     "C:\\Users\\SeanP\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\SeanP\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",

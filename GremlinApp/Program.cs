@@ -5,6 +5,8 @@ using Gremlin.Net.Structure.IO.GraphSON;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Json;
 using System;
+using Newtonsoft.Json;
+
 
 
 namespace GremlinApp
@@ -13,14 +15,17 @@ namespace GremlinApp
     {
         static void Main(string[] args)
         {
-            try{
-                if(args.Length!=1){
+            try
+            {
+                if (args.Length != 1)
+                {
                     Console.WriteLine("Please enter a Gremlin/Graph Query.");
                 }
-                else{
+                else
+                {
                     var azureConfig = new ConfigurationBuilder()
                     .SetBasePath(Environment.CurrentDirectory)
-                    .AddJsonFile("appsettings.json",optional:false,reloadOnChange:false)
+                    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
                     .Build()
                     .GetSection("AzureConfig");
 
@@ -28,30 +33,38 @@ namespace GremlinApp
                     var port = Convert.ToInt32(azureConfig["Port"]);
                     var authKey = azureConfig["AuthKey"];
                     var database = azureConfig["Database"];
-                    var collection  = azureConfig["Collection"];
+                    var collection = azureConfig["Collection"];
 
                     var gremlinServer = new GremlinServer(
-                        hostname,port,enableSsl: true, username: $"/dbs/"+database+"/colls/"+collection, password: authKey
+                        hostname, port, enableSsl: true, username: $"/dbs/" + database + "/colls/" + collection, password: authKey
                     );
 
-                    using(var gremlinClient = new GremlinClient(gremlinServer, new GraphSON2Reader(), new GraphSON2Writer(), GremlinClient.GraphSON2MimeType))
+                    using (var gremlinClient = new GremlinClient(gremlinServer, new GraphSON2Reader(), new GraphSON2Writer(), GremlinClient.GraphSON2MimeType))
                     {
-                        var resultSet=AzureAsync(gremlinClient, args[0]);
+                        var resultSet = AzureAsync(gremlinClient, args[0]);
                         Console.WriteLine("\n{{\"Returned\": \"{0}\"}}", resultSet.Result.Count);
+                        foreach (var result in resultSet.Result)
+                        {
+                            string jsonOutput = JsonConvert.SerializeObject(result);
+                            Console.WriteLine("{0}", jsonOutput);
+                        }
                     }
                 }
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 Console.WriteLine("EXCEPTION: {0}", ex.Message);
             }
         }
 
         private static Task<ResultSet<dynamic>> AzureAsync(GremlinClient gremlinClient, string query)
         {
-            try{
+            try
+            {
                 return gremlinClient.SubmitAsync<dynamic>(query);
             }
-            catch(ResponseException ex){
+            catch (ResponseException ex)
+            {
                 Console.WriteLine("EXCEPTION: {0}", ex.StatusCode);
                 throw;
             }
